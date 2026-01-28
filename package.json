@@ -3,12 +3,28 @@
   "displayName": "DevToolbox",
   "description": "Essential utilities for developers",
   "version": "0.0.1",
+  "publisher": "andersseen",
   "engines": {
     "vscode": "^1.108.1"
   },
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "developer tools",
+    "productivity",
+    "utilities",
+    "code cleanup"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andersseen/andersseen-kit"
+  },
+  "bugs": {
+    "url": "https://github.com/andersseen/andersseen-kit/issues"
+  },
+  "homepage": "https://github.com/andersseen/andersseen-kit#readme",
+  "icon": "icon.png",
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
@@ -48,8 +64,29 @@
         "title": "Prune Merged Branches",
         "category": "DevToolbox",
         "icon": "$(git-branch)"
+      },
+      {
+        "command": "devtoolbox.checkForUpdates",
+        "title": "Check for Updates",
+        "category": "DevToolbox",
+        "icon": "$(cloud-download)"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "DevToolbox",
+      "properties": {
+        "devtoolbox.updateCheck.owner": {
+          "type": "string",
+          "default": "andersseen",
+          "description": "GitHub repository owner for update checks"
+        },
+        "devtoolbox.updateCheck.repo": {
+          "type": "string",
+          "default": "andersseen-kit",
+          "description": "GitHub repository name for update checks"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",

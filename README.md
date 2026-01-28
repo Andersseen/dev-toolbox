@@ -1,71 +1,128 @@
-# andersseen-kit README
+# DevToolbox
 
-This is the README for your extension "andersseen-kit". After writing up a brief description, we recommend including the following sections.
+Essential utilities for developers to boost productivity in VS Code.
+
+![DevToolbox Icon](icon.png)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+DevToolbox provides a collection of handy developer utilities accessible from the sidebar:
 
-For example if there is an image subfolder under your extension project workspace:
+### 🗑️ Remove Console Logs
 
-\!\[feature X\]\(images/feature-x.png\)
+Quickly remove all `console.log()` statements from your active file. Perfect for cleaning up debugging code before committing.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### 💬 Remove Comments
+
+Strip all comments from your active file. Useful for creating minified versions or cleaning up heavily commented code.
+
+### 🌿 Prune Merged Branches
+
+Clean up your local Git repository by removing branches that have already been merged. Keeps your branch list tidy.
+
+### 🔄 Auto-Update System
+
+- Automatically checks for updates once per day
+- Notifies you when new versions are available
+- One-click download and installation
+- Manual update check via Command Palette
+
+## Installation
+
+### From GitHub Releases (Recommended)
+
+1. Go to [Releases](https://github.com/andersseen/andersseen-kit/releases)
+2. Download the latest `.vsix` file
+3. In VS Code, go to Extensions (`Cmd+Shift+X` / `Ctrl+Shift+X`)
+4. Click the `...` menu → `Install from VSIX...`
+5. Select the downloaded `.vsix` file
+
+### From Source
+
+```bash
+git clone https://github.com/andersseen/andersseen-kit.git
+cd andersseen-kit
+pnpm install
+pnpm run package
+code --install-extension andersseen-kit-0.0.1.vsix
+```
+
+## Usage
+
+### Accessing Tools
+
+1. Click the DevToolbox icon in the Activity Bar (left sidebar)
+2. Browse available tools in the sidebar
+3. Click any tool to execute it
+
+### Command Palette
+
+All tools are also available via Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`):
+
+- `DevToolbox: Remove Console Logs`
+- `DevToolbox: Remove Comments`
+- `DevToolbox: Prune Merged Branches`
+- `DevToolbox: Check for Updates`
+
+## Configuration
+
+Configure update checking in VS Code settings:
+
+```json
+{
+  "devtoolbox.updateCheck.owner": "andersseen",
+  "devtoolbox.updateCheck.repo": "andersseen-kit"
+}
+```
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- VS Code version 1.108.1 or higher
+- Git (for branch pruning feature)
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- `devtoolbox.updateCheck.owner`: GitHub repository owner for update checks (default: "andersseen")
+- `devtoolbox.updateCheck.repo`: GitHub repository name for update checks (default: "andersseen-kit")
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Branch pruning requires Git to be installed and available in PATH
+- Update checking requires internet connection
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+See [CHANGELOG.md](CHANGELOG.md) for detailed release notes.
 
-### 1.0.0
+### 0.0.1
 
-Initial release of ...
+Initial release with core developer utilities:
 
-### 1.0.1
+- Remove Console Logs
+- Remove Comments
+- Prune Merged Branches
+- Auto-update system
 
-Fixed issue #.
+## Contributing
 
-### 1.1.0
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-Added features X, Y, and Z.
+## Deployment
+
+For deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
+
+## License
+
+This extension is open source and available under the MIT License.
+
+## Support
+
+- 🐛 [Report a bug](https://github.com/andersseen/andersseen-kit/issues)
+- 💡 [Request a feature](https://github.com/andersseen/andersseen-kit/issues)
+- 📖 [View documentation](https://github.com/andersseen/andersseen-kit#readme)
 
 ---
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Enjoy!** 🚀
