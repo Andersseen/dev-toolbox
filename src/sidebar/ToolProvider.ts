@@ -28,6 +28,11 @@ export class ToolProvider implements vscode.TreeDataProvider<ToolItem> {
         "devtoolbox.pruneBranches",
         new vscode.ThemeIcon("git-merge"),
       ),
+      new ToolItem(
+        "Remove Comments",
+        "devtoolbox.removeComments",
+        new vscode.ThemeIcon("comment"),
+      ),
     ]);
   }
 }

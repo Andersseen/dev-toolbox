@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { ToolProvider } from "./sidebar/ToolProvider";
 import { removeConsoleLogs } from "./commands/removeLogs";
+import { removeComments } from "./commands/removeComments";
 import { pruneMergedBranches } from "./commands/pruneBranches";
 
 export function activate(context: vscode.ExtensionContext) {
@@ -25,7 +26,18 @@ export function activate(context: vscode.ExtensionContext) {
     },
   );
 
-  context.subscriptions.push(removeLogsDisposable, pruneBranchesDisposable);
+  const removeCommentsDisposable = vscode.commands.registerCommand(
+    "devtoolbox.removeComments",
+    () => {
+      removeComments();
+    },
+  );
+
+  context.subscriptions.push(
+    removeLogsDisposable,
+    pruneBranchesDisposable,
+    removeCommentsDisposable,
+  );
 }
 
 export function deactivate() {}

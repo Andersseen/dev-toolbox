@@ -38,6 +38,12 @@
         "icon": "$(trash)"
       },
       {
+        "command": "devtoolbox.removeComments",
+        "title": "Remove Comments",
+        "category": "DevToolbox",
+        "icon": "$(comment)"
+      },
+      {
         "command": "devtoolbox.pruneBranches",
         "title": "Prune Merged Branches",
         "category": "DevToolbox",
