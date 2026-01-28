@@ -5,6 +5,7 @@ node_modules/**
 src/**
 .gitignore
 .yarnrc
+.npmrc
 esbuild.js
 vsc-extension-quickstart.md
 **/tsconfig.json
@@ -12,3 +13,10 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
+.github/**
+scripts/**
+pnpm-lock.yaml
+DEPLOYMENT.md
+MARKETPLACE.md
+*.vsix
+
