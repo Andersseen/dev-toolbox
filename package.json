@@ -1,7 +1,7 @@
 {
   "name": "andersseen-kit",
-  "displayName": "andersseen-kit",
-  "description": "usefull tool kit",
+  "displayName": "DevToolbox",
+  "description": "Essential utilities for developers",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.108.1"
@@ -12,10 +12,36 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "devtoolbox-container",
+          "title": "DevToolbox",
+          "icon": "$(tools)"
+        }
+      ]
+    },
+    "views": {
+      "devtoolbox-container": [
+        {
+          "id": "devtoolbox-sidebar",
+          "name": "Tools",
+          "type": "tree"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "andersseen-kit.helloWorld",
-        "title": "Hello World"
+        "command": "devtoolbox.removeLogs",
+        "title": "Remove Console Logs",
+        "category": "DevToolbox",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "devtoolbox.pruneBranches",
+        "title": "Prune Merged Branches",
+        "category": "DevToolbox",
+        "icon": "$(git-branch)"
       }
     ]
   },
