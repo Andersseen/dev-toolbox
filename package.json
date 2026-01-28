@@ -1,20 +1,29 @@
 {
   "name": "dev-toolbox",
-  "displayName": "DevToolbox",
-  "description": "Essential utilities for developers",
+  "displayName": "DevToolbox - Developer Utilities",
+  "description": "Essential developer utilities: remove logs, clean code, prune branches",
   "version": "0.0.1",
   "publisher": "andersseen",
   "engines": {
     "vscode": "^1.108.1"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Formatters",
+    "Linters",
+    "SCM Providers"
   ],
   "keywords": [
     "developer tools",
     "productivity",
     "utilities",
-    "code cleanup"
+    "code cleanup",
+    "remove console",
+    "remove comments",
+    "git branches",
+    "code formatter",
+    "developer productivity",
+    "workspace tools"
   ],
   "repository": {
     "type": "git",

@@ -60,7 +60,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Publish to VS Code Marketplace
-      #   if: secrets.VSCE_PAT != ''
-      #   run: vsce publish -p ${{ secrets.VSCE_PAT }}
-      #   continue-on-error: true
+      - name: Publish to VS Code Marketplace
+        run: vsce publish -p ${{ secrets.VSCE_PAT }}
+        continue-on-error: true

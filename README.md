@@ -1,72 +1,67 @@
-# DevToolbox
+# DevToolbox - Developer Utilities
 
-Essential utilities for developers to boost productivity in VS Code.
+[![Version](https://img.shields.io/visual-studio-marketplace/v/andersseen.dev-toolbox)](https://marketplace.visualstudio.com/items?itemName=andersseen.dev-toolbox)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/andersseen.dev-toolbox)](https://marketplace.visualstudio.com/items?itemName=andersseen.dev-toolbox)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/andersseen.dev-toolbox)](https://marketplace.visualstudio.com/items?itemName=andersseen.dev-toolbox)
+[![License](https://img.shields.io/github/license/andersseen/dev-toolbox)](https://github.com/andersseen/dev-toolbox/blob/main/LICENSE)
 
-![DevToolbox Icon](icon.png)
+> 🛠️ Essential utilities to boost your development productivity
 
-## Features
+DevToolbox is a lightweight VS Code extension that provides essential developer utilities right in your sidebar. Clean up your code, manage Git branches, and stay updated - all with a single click.
 
-DevToolbox provides a collection of handy developer utilities accessible from the sidebar:
+## ✨ Features
 
 ### 🗑️ Remove Console Logs
 
-Quickly remove all `console.log()` statements from your active file. Perfect for cleaning up debugging code before committing.
+Instantly remove all `console.log()` statements from your active file. Perfect for cleaning up debugging code before committing.
+
+**Usage:** Click the tool in sidebar or run `DevToolbox: Remove Console Logs` from Command Palette
 
 ### 💬 Remove Comments
 
-Strip all comments from your active file. Useful for creating minified versions or cleaning up heavily commented code.
+Strip all comments (single-line and multi-line) from your active file. Useful for creating minified versions or cleaning up heavily commented code.
+
+**Usage:** Click the tool in sidebar or run `DevToolbox: Remove Comments` from Command Palette
 
 ### 🌿 Prune Merged Branches
 
-Clean up your local Git repository by removing branches that have already been merged. Keeps your branch list tidy.
+Clean up your local Git repository by removing branches that have already been merged into main/master. Keeps your branch list tidy and organized.
+
+**Usage:** Click the tool in sidebar or run `DevToolbox: Prune Merged Branches` from Command Palette
 
 ### 🔄 Auto-Update System
 
-- Automatically checks for updates once per day
-- Notifies you when new versions are available
-- One-click download and installation
-- Manual update check via Command Palette
+- ✅ Automatically checks for updates once per day
+- ✅ Notifies you when new versions are available
+- ✅ One-click download from GitHub Releases
+- ✅ Manual update check available
 
-## Installation
+**Usage:** Run `DevToolbox: Check for Updates` from Command Palette
 
-### From GitHub Releases (Recommended)
+## 🚀 Quick Start
 
-1. Go to [Releases](https://github.com/andersseen/dev-toolbox/releases)
-2. Download the latest `.vsix` file
-3. In VS Code, go to Extensions (`Cmd+Shift+X` / `Ctrl+Shift+X`)
-4. Click the `...` menu → `Install from VSIX...`
-5. Select the downloaded `.vsix` file
+1. Install the extension
+2. Click the **DevToolbox** icon in the Activity Bar (left sidebar)
+3. Browse and click any tool to use it
+4. All tools also available via Command Palette (`Cmd/Ctrl+Shift+P`)
 
-### From Source
+## 📦 Installation
 
-```bash
-git clone https://github.com/andersseen/dev-toolbox.git
-cd dev-toolbox
-pnpm install
-pnpm run package
-code --install-extension dev-toolbox-0.0.1.vsix
-```
+### From VS Code Marketplace
 
-## Usage
+1. Open VS Code
+2. Go to Extensions (`Cmd+Shift+X` / `Ctrl+Shift+X`)
+3. Search for "DevToolbox"
+4. Click Install
 
-### Accessing Tools
+### From GitHub Releases
 
-1. Click the DevToolbox icon in the Activity Bar (left sidebar)
-2. Browse available tools in the sidebar
-3. Click any tool to execute it
+1. Download the latest `.vsix` from [Releases](https://github.com/andersseen/dev-toolbox/releases)
+2. In VS Code: Extensions → `...` → Install from VSIX
 
-### Command Palette
+## ⚙️ Configuration
 
-All tools are also available via Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`):
-
-- `DevToolbox: Remove Console Logs`
-- `DevToolbox: Remove Comments`
-- `DevToolbox: Prune Merged Branches`
-- `DevToolbox: Check for Updates`
-
-## Configuration
-
-Configure update checking in VS Code settings:
+Configure update checking in your VS Code settings:
 
 ```json
 {
@@ -75,54 +70,58 @@ Configure update checking in VS Code settings:
 }
 ```
 
-## Requirements
+## 📋 Requirements
 
-- VS Code version 1.108.1 or higher
+- VS Code 1.108.1 or higher
 - Git (for branch pruning feature)
 
-## Extension Settings
+## 🎯 Use Cases
 
-This extension contributes the following settings:
+- **Before committing**: Remove console logs and clean up comments
+- **Repository maintenance**: Prune old merged branches
+- **Code cleanup**: Quickly strip debugging code
+- **Stay updated**: Get notified of new features and fixes
 
-- `devtoolbox.updateCheck.owner`: GitHub repository owner for update checks (default: "andersseen")
-- `devtoolbox.updateCheck.repo`: GitHub repository name for update checks (default: "dev-toolbox")
-
-## Known Issues
+## 🐛 Known Issues
 
 - Branch pruning requires Git to be installed and available in PATH
 - Update checking requires internet connection
 
-## Release Notes
+## 📝 Release Notes
 
-See [CHANGELOG.md](CHANGELOG.md) for detailed release notes.
+See [CHANGELOG](https://github.com/andersseen/dev-toolbox/blob/main/CHANGELOG.md) for detailed release notes.
 
-### 0.0.1
+### Recent Updates
 
-Initial release with core developer utilities:
+#### 0.0.1 - Initial Release
 
-- Remove Console Logs
-- Remove Comments
-- Prune Merged Branches
-- Auto-update system
+- ✨ Remove Console Logs tool
+- ✨ Remove Comments tool
+- ✨ Prune Merged Branches tool
+- ✨ Auto-update system with daily checks
+- 🎨 Sidebar integration with Activity Bar icon
+- ⚙️ Configurable update checking
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Deployment
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-For deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
+## 📄 License
 
-## License
+This extension is licensed under the [MIT License](https://github.com/andersseen/dev-toolbox/blob/main/LICENSE).
 
-This extension is open source and available under the MIT License.
-
-## Support
+## 💬 Support
 
 - 🐛 [Report a bug](https://github.com/andersseen/dev-toolbox/issues)
 - 💡 [Request a feature](https://github.com/andersseen/dev-toolbox/issues)
-- 📖 [View documentation](https://github.com/andersseen/dev-toolbox#readme)
+- ⭐ [Star on GitHub](https://github.com/andersseen/dev-toolbox)
 
 ---
 
-**Enjoy!** 🚀
+**Enjoy coding with DevToolbox!** 🚀
