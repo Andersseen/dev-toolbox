@@ -31,7 +31,7 @@ Clean up your local Git repository by removing branches that have already been m
 
 ### From GitHub Releases (Recommended)
 
-1. Go to [Releases](https://github.com/andersseen/andersseen-kit/releases)
+1. Go to [Releases](https://github.com/andersseen/dev-toolbox/releases)
 2. Download the latest `.vsix` file
 3. In VS Code, go to Extensions (`Cmd+Shift+X` / `Ctrl+Shift+X`)
 4. Click the `...` menu → `Install from VSIX...`
@@ -40,11 +40,11 @@ Clean up your local Git repository by removing branches that have already been m
 ### From Source
 
 ```bash
-git clone https://github.com/andersseen/andersseen-kit.git
-cd andersseen-kit
+git clone https://github.com/andersseen/dev-toolbox.git
+cd dev-toolbox
 pnpm install
 pnpm run package
-code --install-extension andersseen-kit-0.0.1.vsix
+code --install-extension dev-toolbox-0.0.1.vsix
 ```
 
 ## Usage
@@ -71,7 +71,7 @@ Configure update checking in VS Code settings:
 ```json
 {
   "devtoolbox.updateCheck.owner": "andersseen",
-  "devtoolbox.updateCheck.repo": "andersseen-kit"
+  "devtoolbox.updateCheck.repo": "dev-toolbox"
 }
 ```
 
@@ -85,7 +85,7 @@ Configure update checking in VS Code settings:
 This extension contributes the following settings:
 
 - `devtoolbox.updateCheck.owner`: GitHub repository owner for update checks (default: "andersseen")
-- `devtoolbox.updateCheck.repo`: GitHub repository name for update checks (default: "andersseen-kit")
+- `devtoolbox.updateCheck.repo`: GitHub repository name for update checks (default: "dev-toolbox")
 
 ## Known Issues
 
@@ -119,9 +119,9 @@ This extension is open source and available under the MIT License.
 
 ## Support
 
-- 🐛 [Report a bug](https://github.com/andersseen/andersseen-kit/issues)
-- 💡 [Request a feature](https://github.com/andersseen/andersseen-kit/issues)
-- 📖 [View documentation](https://github.com/andersseen/andersseen-kit#readme)
+- 🐛 [Report a bug](https://github.com/andersseen/dev-toolbox/issues)
+- 💡 [Request a feature](https://github.com/andersseen/dev-toolbox/issues)
+- 📖 [View documentation](https://github.com/andersseen/dev-toolbox#readme)
 
 ---
 

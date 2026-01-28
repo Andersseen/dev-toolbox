@@ -73,11 +73,11 @@ export async function checkForUpdates(
 ): Promise<void> {
   const config = vscode.workspace.getConfiguration("devtoolbox");
   const owner = config.get<string>("updateCheck.owner", "andersseen");
-  const repo = config.get<string>("updateCheck.repo", "andersseen-kit");
+  const repo = config.get<string>("updateCheck.repo", "dev-toolbox");
 
   // Get current version from package.json
   const currentVersion =
-    vscode.extensions.getExtension("andersseen.andersseen-kit")?.packageJSON
+    vscode.extensions.getExtension("andersseen.dev-toolbox")?.packageJSON
       .version || "0.0.1";
 
   // Fetch latest release

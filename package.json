@@ -1,5 +1,5 @@
 {
-  "name": "andersseen-kit",
+  "name": "dev-toolbox",
   "displayName": "DevToolbox",
   "description": "Essential utilities for developers",
   "version": "0.0.1",
@@ -18,12 +18,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/andersseen/andersseen-kit"
+    "url": "https://github.com/andersseen/dev-toolbox"
   },
   "bugs": {
-    "url": "https://github.com/andersseen/andersseen-kit/issues"
+    "url": "https://github.com/andersseen/dev-toolbox/issues"
   },
-  "homepage": "https://github.com/andersseen/andersseen-kit#readme",
+  "homepage": "https://github.com/andersseen/dev-toolbox#readme",
   "icon": "icon.png",
   "activationEvents": [],
   "main": "./dist/extension.js",
@@ -82,7 +82,7 @@
         },
         "devtoolbox.updateCheck.repo": {
           "type": "string",
-          "default": "andersseen-kit",
+          "default": "dev-toolbox",
           "description": "GitHub repository name for update checks"
         }
       }

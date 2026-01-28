@@ -6,7 +6,7 @@ This guide explains how to deploy and release new versions of the DevToolbox VS 
 
 ## Prerequisites
 
-1. **GitHub Repository**: Ensure your code is pushed to GitHub at `https://github.com/andersseen/andersseen-kit`
+1. **GitHub Repository**: Ensure your code is pushed to GitHub at `https://github.com/andersseen/dev-toolbox`
 2. **Git**: Installed and configured locally
 3. **pnpm**: Package manager (or npm/yarn)
 
@@ -74,11 +74,11 @@ Once the tag is pushed, GitHub Actions will automatically:
 5. ✅ Create a GitHub Release with the changelog
 6. ✅ Upload the `.vsix` file as a release asset
 
-You can monitor the progress at: `https://github.com/andersseen/andersseen-kit/actions`
+You can monitor the progress at: `https://github.com/andersseen/dev-toolbox/actions`
 
 ### 5. Verify the Release
 
-1. Go to `https://github.com/andersseen/andersseen-kit/releases`
+1. Go to `https://github.com/andersseen/dev-toolbox/releases`
 2. Verify the new release appears with the correct version
 3. Download the `.vsix` file to test installation
 4. Install it in VS Code: `Extensions > ... > Install from VSIX`
@@ -95,7 +95,7 @@ pnpm run package
 npx @vscode/vsce package
 
 # 3. Create a GitHub release manually
-# - Go to https://github.com/andersseen/andersseen-kit/releases/new
+# - Go to https://github.com/andersseen/dev-toolbox/releases/new
 # - Create a new tag (e.g., v0.0.2)
 # - Fill in the release notes
 # - Upload the .vsix file
@@ -154,13 +154,13 @@ Users can install the extension in three ways:
 
 3. **Direct Link**:
    - Share the `.vsix` file directly
-   - Users install via `code --install-extension andersseen-kit-0.0.2.vsix`
+   - Users install via `code --install-extension dev-toolbox-0.0.2.vsix`
 
 ## Troubleshooting
 
 ### GitHub Actions Fails
 
-- Check the workflow logs at `https://github.com/andersseen/andersseen-kit/actions`
+- Check the workflow logs at `https://github.com/andersseen/dev-toolbox/actions`
 - Ensure all tests pass locally: `pnpm test`
 - Verify the tag format matches `v*.*.*`
 
