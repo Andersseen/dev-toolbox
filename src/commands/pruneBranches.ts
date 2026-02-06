@@ -14,49 +14,77 @@ export async function pruneMergedBranches() {
   const rootPath = workspaceFolders[0].uri.fsPath;
 
   try {
-    vscode.window.showInformationMessage("Pruning merged branches...");
+    // 1. Get all local branches
+    const { stdout: allBranchesOut } = await exec("git branch", {
+      cwd: rootPath,
+    });
+    const allBranches = allBranchesOut
+      .split("\n")
+      .map((b) => b.trim())
+      .filter((b) => b);
 
-    // 1. Get merged branches
-    // --merged implies HEAD if not specified, which is current branch.
-    // We want branches merged into current branch.
-    const { stdout } = await exec("git branch --merged", { cwd: rootPath });
+    // 2. Get merged branches
+    const { stdout: mergedBranchesOut } = await exec("git branch --merged", {
+      cwd: rootPath,
+    });
+    const mergedBranches = new Set(
+      mergedBranchesOut
+        .split("\n")
+        .map((b) => b.trim())
+        .filter((b) => b),
+    );
 
-    const lines = stdout.split("\n");
-    const branchesToDelete: string[] = [];
+    // 3. Create QuickPick items
+    const items: vscode.QuickPickItem[] = [];
+    for (const branch of allBranches) {
+      // Clean branch name (remove * for current branch)
+      const isCurrent = branch.startsWith("*");
+      const branchName = branch.replace("*", "").trim();
 
-    // 2. Filter branches
-    for (const line of lines) {
-      const branch = line.trim();
-      // Skip empty lines
-      if (!branch) {
-        continue;
-      }
-      // Skip current branch (marked with *)
-      if (branch.startsWith("*")) {
-        continue;
-      }
-      // Skip main/master/custom protected branches
+      // Skip main/master/custom protected branches and current branch
       if (
-        branch === "main" ||
-        branch === "master" ||
-        branch === "dev" ||
-        branch === "development"
+        isCurrent ||
+        branchName === "main" ||
+        branchName === "master" ||
+        branchName === "dev" ||
+        branchName === "development"
       ) {
         continue;
       }
 
-      branchesToDelete.push(branch);
+      const isMerged = mergedBranches.has(branchName);
+      items.push({
+        label: branchName,
+        description: isMerged ? "Merged" : "Not Merged",
+        picked: isMerged, // Pre-select if merged
+      });
     }
 
-    if (branchesToDelete.length === 0) {
-      vscode.window.showInformationMessage("No merged branches to delete.");
+    if (items.length === 0) {
+      vscode.window.showInformationMessage(
+        "No branches available to prune (excluding current and protected branches).",
+      );
       return;
     }
 
-    // 3. Delete branches
-    // We can do this in one command or loop. One command is safer/faster for many: git branch -d b1 b2 b3
+    // 4. Show QuickPick
+    const selected = await vscode.window.showQuickPick(items, {
+      canPickMany: true,
+      placeHolder:
+        "Select branches to delete (Merged branches are pre-selected)",
+      title: "Prune Branches",
+    });
+
+    if (!selected || selected.length === 0) {
+      return;
+    }
+
+    // 5. Delete selected branches
+    const branchesToDelete = selected.map((item) => item.label);
     const branchList = branchesToDelete.join(" ");
-    await exec(`git branch -d ${branchList}`, { cwd: rootPath });
+
+    // Using -D (force delete) because the user explicitly selected these branches for deletion.
+    await exec(`git branch -D ${branchList}`, { cwd: rootPath });
 
     vscode.window.showInformationMessage(
       `Deleted ${branchesToDelete.length} branches: ${branchList}`,

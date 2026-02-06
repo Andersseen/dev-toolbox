@@ -28,8 +28,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned
+## [0.0.2] - 2026-02-06
 
-- Additional developer utilities
-- Customizable tool configurations
-- Support for more programming languages
+### Changed
+
+- **Prune Merged Branches**: Now uses a native QuickPick UI (checkboxes) instead of automatic deletion. Allows selecting which branches to delete.
+- **Remove Console Logs**:
+  - Now scans the entire workspace for logs.
+  - Shows a QuickPick list to select files to clean.
+  - Immediately cleans the active file.
+- **Remove Comments**:
+  - Now scans the entire workspace for comments.
+  - Shows a QuickPick list to select files to clean.
+  - Immediately cleans the active file.
+
+## [0.0.1] - 2026-01-28

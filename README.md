@@ -13,19 +13,28 @@ DevToolbox is a lightweight VS Code extension that provides essential developer 
 
 ### 🗑️ Remove Console Logs
 
-Instantly remove all `console.log()` statements from your active file. Perfect for cleaning up debugging code before committing.
+Instantly remove `console.log()` statements from your code.
 
-**Usage:** Click the tool in sidebar or run `DevToolbox: Remove Console Logs` from Command Palette
+- **Current File**: Cleans the active file immediately.
+- **Workspace**: Scans the entire workspace for other logs and lets you select files to clean via a checkbox list.
+
+**Usage:** Click the tool in sidebar from Command Palette
 
 ### 💬 Remove Comments
 
-Strip all comments (single-line and multi-line) from your active file. Useful for creating minified versions or cleaning up heavily commented code.
+Strip comments (single-line and multi-line) from your code.
+
+- **Current File**: Cleans the active file immediately.
+- **Workspace**: Scans the entire workspace for other comments and lets you select files to clean via a checkbox list.
 
 **Usage:** Click the tool in sidebar or run `DevToolbox: Remove Comments` from Command Palette
 
 ### 🌿 Prune Merged Branches
 
-Clean up your local Git repository by removing branches that have already been merged into main/master. Keeps your branch list tidy and organized.
+Clean up your local Git repository by removing branches that have already been merged into main/master.
+
+- **Interactive**: Shows a list of all local branches with merged ones pre-selected.
+- **Safe**: You can review and modify the selection before deletion.
 
 **Usage:** Click the tool in sidebar or run `DevToolbox: Prune Merged Branches` from Command Palette
 
