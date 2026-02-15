@@ -12,6 +12,7 @@ export async function removeConsoleLogs() {
   }
   const rootPath = workspaceFolders[0].uri.fsPath;
   const editor = vscode.window.activeTextEditor;
+  let logsFoundInCurrentFile = false;
 
   // 1. Clean current file immediately if active
   if (editor) {
@@ -40,12 +41,14 @@ export async function removeConsoleLogs() {
           editBuilder.delete(range);
         }
       });
+      await document.save();
       vscode.window.showInformationMessage(
         "Removed console.log from current file.",
       );
+      logsFoundInCurrentFile = true;
     } else {
-      // Optional: notify if none found in current file? Maybe too noisy if checking workspace.
-      // pass
+      // No logs found in current file
+      logsFoundInCurrentFile = false;
     }
   }
 
@@ -75,16 +78,12 @@ export async function removeConsoleLogs() {
     }
 
     if (filesWithLogs.length === 0) {
-      if (!editor) {
-        // If no editor was open and no logs found
+      // If we already cleaned current file (logsFoundInCurrentFile=true), we don't need to say "No logs found".
+      // But if we didn't clean current file AND no other files have logs, then we say "No logs found".
+      if (!logsFoundInCurrentFile) {
         vscode.window.showInformationMessage(
           "No console.log statements found in workspace.",
         );
-      } else {
-        // If we cleaned the current file, we might just stop here if no others found.
-        // But user might want to know that no *other* files have logs.
-        // Let's just return silently or maybe a small info message if user explicitly ran the command?
-        // Since we already showed "Removed from current file" (if applicable), we can stop.
       }
       return;
     }
@@ -150,6 +149,13 @@ export async function removeConsoleLogs() {
     // 6. Apply edits
     const success = await vscode.workspace.applyEdit(edit);
     if (success) {
+      // Save all modified documents
+      for (const item of selectedItems) {
+        const uri = vscode.Uri.joinPath(workspaceFolders[0].uri, item.label);
+        const doc = await vscode.workspace.openTextDocument(uri);
+        await doc.save();
+      }
+
       vscode.window.showInformationMessage(
         `Removed console.log from ${selectedItems.length} other files.`,
       );
@@ -161,7 +167,11 @@ export async function removeConsoleLogs() {
     // If we already cleaned current file, we shouldn't show "No logs found" error if it was just that git grep didn't find *others*.
     if (error.code === 1) {
       // Code 1 means no matches found.
-      // This is fine.
+      if (!logsFoundInCurrentFile) {
+        vscode.window.showInformationMessage(
+          "No console.log statements found in workspace.",
+        );
+      }
     } else {
       vscode.window.showErrorMessage(
         `Error scanning workspace: ${error.message}`,

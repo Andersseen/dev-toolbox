@@ -13,6 +13,7 @@ export async function removeComments() {
   }
   const rootPath = workspaceFolders[0].uri.fsPath;
   const editor = vscode.window.activeTextEditor;
+  let commentsRemovedFromCurrentFile = false;
 
   // 1. Clean current file immediately
   if (editor) {
@@ -29,8 +30,16 @@ export async function removeComments() {
     await editor.edit((editBuilder) => {
       editBuilder.replace(fullRange, newText);
     });
+    await document.save();
 
-    vscode.window.showInformationMessage("Removed comments from current file.");
+    if (text !== newText) {
+      vscode.window.showInformationMessage(
+        "Removed comments from current file.",
+      );
+      commentsRemovedFromCurrentFile = true;
+    } else {
+      commentsRemovedFromCurrentFile = false;
+    }
   }
 
   try {
@@ -58,7 +67,9 @@ export async function removeComments() {
     }
 
     if (filesWithComments.length === 0) {
-      if (!editor) {
+      if (!commentsRemovedFromCurrentFile) {
+        // If no editor was open and no comments found
+        // OR editor was open but no comments removed from it, and no other files have comments
         vscode.window.showInformationMessage("No comments found in workspace.");
       }
       return;
@@ -123,6 +134,13 @@ export async function removeComments() {
     // 6. Apply edits
     const success = await vscode.workspace.applyEdit(edit);
     if (success) {
+      // Save all modified documents
+      for (const item of selectedItems) {
+        const uri = vscode.Uri.joinPath(workspaceFolders[0].uri, item.label);
+        const doc = await vscode.workspace.openTextDocument(uri);
+        await doc.save();
+      }
+
       vscode.window.showInformationMessage(
         `Removed comments from ${selectedItems.length} other files.`,
       );
@@ -132,6 +150,9 @@ export async function removeComments() {
   } catch (error: any) {
     if (error.code === 1) {
       // No matches found
+      if (!commentsRemovedFromCurrentFile) {
+        vscode.window.showInformationMessage("No comments found in workspace.");
+      }
     } else {
       vscode.window.showErrorMessage(
         `Error scanning workspace: ${error.message}`,
