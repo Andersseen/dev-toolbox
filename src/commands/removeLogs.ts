@@ -112,16 +112,22 @@ export async function removeConsoleLogs() {
 
     // We process sequentially to read files.
     // For a large number of files, this might take a moment, but typically okay for dev tools.
+    let wasCancelled = false;
     await vscode.window.withProgress(
       {
         location: vscode.ProgressLocation.Notification,
         title: "Removing console logs from other files...",
-        cancellable: false,
+        cancellable: true,
       },
-      async (progress) => {
+      async (progress, token) => {
         const increment = 100 / selectedItems.length;
 
         for (const item of selectedItems) {
+          if (token.isCancellationRequested) {
+            wasCancelled = true;
+            break;
+          }
+
           const relativePath = item.label;
           progress.report({ message: relativePath, increment });
 
@@ -147,6 +153,13 @@ export async function removeConsoleLogs() {
     );
 
     // 6. Apply edits
+    if (wasCancelled) {
+      vscode.window.showInformationMessage(
+        "Operation cancelled by user. No logs were removed from other files.",
+      );
+      return;
+    }
+
     const success = await vscode.workspace.applyEdit(edit);
     if (success) {
       // Save all modified documents

@@ -14,7 +14,10 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Register Sidebar Tree Data Provider
   const toolProvider = new ToolProvider();
-  vscode.window.registerTreeDataProvider("devtoolbox-sidebar", toolProvider);
+  const treeDataProviderDisposable = vscode.window.registerTreeDataProvider(
+    "devtoolbox-sidebar",
+    toolProvider,
+  );
 
   // Check for updates on activation (rate-limited to once per day)
   if (shouldCheckForUpdates(context)) {
@@ -54,6 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
+    treeDataProviderDisposable,
     removeLogsDisposable,
     pruneBranchesDisposable,
     removeCommentsDisposable,
