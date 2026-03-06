@@ -51,7 +51,8 @@
         {
           "id": "devtoolbox-sidebar",
           "name": "Tools",
-          "type": "tree"
+          "type": "tree",
+          "icon": "$(tools)"
         }
       ]
     },
@@ -79,6 +80,24 @@
         "title": "Check for Updates",
         "category": "DevToolbox",
         "icon": "$(cloud-download)"
+      },
+      {
+        "command": "devtoolbox.showMemory",
+        "title": "Extension Host Memory",
+        "category": "DevToolbox",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "devtoolbox.openProcessExplorer",
+        "title": "Open Process Explorer",
+        "category": "DevToolbox",
+        "icon": "$(server-process)"
+      },
+      {
+        "command": "devtoolbox.restartExtensionHost",
+        "title": "Restart Extension Host (Clear RAM)",
+        "category": "DevToolbox",
+        "icon": "$(refresh)"
       }
     ],
     "configuration": {

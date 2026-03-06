@@ -4,6 +4,11 @@ import { removeConsoleLogs } from "./commands/removeLogs";
 import { removeComments } from "./commands/removeComments";
 import { pruneMergedBranches } from "./commands/pruneBranches";
 import {
+  showMemoryUsage,
+  openProcessExplorer,
+  restartExtensionHost,
+} from "./commands/diagnostics";
+import {
   checkForUpdates,
   shouldCheckForUpdates,
   updateLastCheckTimestamp,
@@ -56,12 +61,30 @@ export function activate(context: vscode.ExtensionContext) {
     },
   );
 
+  const showMemoryDisposable = vscode.commands.registerCommand(
+    "devtoolbox.showMemory",
+    showMemoryUsage,
+  );
+
+  const processExplorerDisposable = vscode.commands.registerCommand(
+    "devtoolbox.openProcessExplorer",
+    openProcessExplorer,
+  );
+
+  const restartExtensionHostDisposable = vscode.commands.registerCommand(
+    "devtoolbox.restartExtensionHost",
+    restartExtensionHost,
+  );
+
   context.subscriptions.push(
     treeDataProviderDisposable,
     removeLogsDisposable,
     pruneBranchesDisposable,
     removeCommentsDisposable,
     checkUpdatesDisposable,
+    showMemoryDisposable,
+    processExplorerDisposable,
+    restartExtensionHostDisposable,
   );
 }
 
