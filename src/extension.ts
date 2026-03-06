@@ -2,7 +2,18 @@ import * as vscode from "vscode";
 import { ToolProvider } from "./sidebar/ToolProvider";
 import { removeConsoleLogs } from "./commands/removeLogs";
 import { removeComments } from "./commands/removeComments";
-import { pruneMergedBranches } from "./commands/pruneBranches";
+import {
+  pruneMergedBranches,
+  pruneRemoteBranches,
+} from "./commands/pruneBranches";
+import { clearNodeModules } from "./commands/clearNodeModules";
+import { killPort } from "./commands/killPort";
+import { sortExports } from "./commands/sortExports";
+import {
+  showMemoryUsage,
+  openProcessExplorer,
+  restartExtensionHost,
+} from "./commands/diagnostics";
 import {
   checkForUpdates,
   shouldCheckForUpdates,
@@ -14,7 +25,10 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Register Sidebar Tree Data Provider
   const toolProvider = new ToolProvider();
-  vscode.window.registerTreeDataProvider("devtoolbox-sidebar", toolProvider);
+  const treeDataProviderDisposable = vscode.window.registerTreeDataProvider(
+    "devtoolbox-sidebar",
+    toolProvider,
+  );
 
   // Check for updates on activation (rate-limited to once per day)
   if (shouldCheckForUpdates(context)) {
@@ -45,6 +59,11 @@ export function activate(context: vscode.ExtensionContext) {
     },
   );
 
+  const sortExportsDisposable = vscode.commands.registerCommand(
+    "devtoolbox.sortExports",
+    sortExports,
+  );
+
   const checkUpdatesDisposable = vscode.commands.registerCommand(
     "devtoolbox.checkForUpdates",
     async () => {
@@ -53,11 +72,49 @@ export function activate(context: vscode.ExtensionContext) {
     },
   );
 
+  const showMemoryDisposable = vscode.commands.registerCommand(
+    "devtoolbox.showMemory",
+    showMemoryUsage,
+  );
+
+  const processExplorerDisposable = vscode.commands.registerCommand(
+    "devtoolbox.openProcessExplorer",
+    openProcessExplorer,
+  );
+
+  const restartExtensionHostDisposable = vscode.commands.registerCommand(
+    "devtoolbox.restartExtensionHost",
+    restartExtensionHost,
+  );
+
+  const pruneRemoteBranchesDisposable = vscode.commands.registerCommand(
+    "devtoolbox.pruneRemoteBranches",
+    pruneRemoteBranches,
+  );
+
+  const clearNodeModulesDisposable = vscode.commands.registerCommand(
+    "devtoolbox.clearNodeModules",
+    clearNodeModules,
+  );
+
+  const killPortDisposable = vscode.commands.registerCommand(
+    "devtoolbox.killPort",
+    killPort,
+  );
+
   context.subscriptions.push(
+    treeDataProviderDisposable,
     removeLogsDisposable,
     pruneBranchesDisposable,
     removeCommentsDisposable,
+    sortExportsDisposable,
     checkUpdatesDisposable,
+    showMemoryDisposable,
+    processExplorerDisposable,
+    restartExtensionHostDisposable,
+    pruneRemoteBranchesDisposable,
+    clearNodeModulesDisposable,
+    killPortDisposable,
   );
 }
 

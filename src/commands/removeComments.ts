@@ -95,16 +95,22 @@ export async function removeComments() {
     // 5. Process selected files
     const edit = new vscode.WorkspaceEdit();
 
+    let wasCancelled = false;
     await vscode.window.withProgress(
       {
         location: vscode.ProgressLocation.Notification,
         title: "Removing comments from other files...",
-        cancellable: false,
+        cancellable: true,
       },
-      async (progress) => {
+      async (progress, token) => {
         const increment = 100 / selectedItems.length;
 
         for (const item of selectedItems) {
+          if (token.isCancellationRequested) {
+            wasCancelled = true;
+            break;
+          }
+
           const relativePath = item.label;
           progress.report({ message: relativePath, increment });
 
@@ -132,6 +138,13 @@ export async function removeComments() {
     );
 
     // 6. Apply edits
+    if (wasCancelled) {
+      vscode.window.showInformationMessage(
+        "Operation cancelled by user. No comments were removed from other files.",
+      );
+      return;
+    }
+
     const success = await vscode.workspace.applyEdit(edit);
     if (success) {
       // Save all modified documents

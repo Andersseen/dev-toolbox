@@ -51,7 +51,8 @@
         {
           "id": "devtoolbox-sidebar",
           "name": "Tools",
-          "type": "tree"
+          "type": "tree",
+          "icon": "$(tools)"
         }
       ]
     },
@@ -69,6 +70,12 @@
         "icon": "$(comment)"
       },
       {
+        "command": "devtoolbox.sortExports",
+        "title": "Sort Exports (Index Files)",
+        "category": "DevToolbox",
+        "icon": "$(list-ordered)"
+      },
+      {
         "command": "devtoolbox.pruneBranches",
         "title": "Prune Merged Branches",
         "category": "DevToolbox",
@@ -79,6 +86,42 @@
         "title": "Check for Updates",
         "category": "DevToolbox",
         "icon": "$(cloud-download)"
+      },
+      {
+        "command": "devtoolbox.showMemory",
+        "title": "Extension Host Memory",
+        "category": "DevToolbox",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "devtoolbox.openProcessExplorer",
+        "title": "Open Process Explorer",
+        "category": "DevToolbox",
+        "icon": "$(server-process)"
+      },
+      {
+        "command": "devtoolbox.restartExtensionHost",
+        "title": "Restart Extension Host (Clear RAM)",
+        "category": "DevToolbox",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "devtoolbox.pruneRemoteBranches",
+        "title": "Prune Remote Branches",
+        "category": "DevToolbox",
+        "icon": "$(cloud)"
+      },
+      {
+        "command": "devtoolbox.clearNodeModules",
+        "title": "Clear Node Modules & Reinstall",
+        "category": "DevToolbox",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "devtoolbox.killPort",
+        "title": "Kill Port Process",
+        "category": "DevToolbox",
+        "icon": "$(plug)"
       }
     ],
     "configuration": {
