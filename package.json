@@ -70,6 +70,12 @@
         "icon": "$(comment)"
       },
       {
+        "command": "devtoolbox.sortExports",
+        "title": "Sort Exports (Index Files)",
+        "category": "DevToolbox",
+        "icon": "$(list-ordered)"
+      },
+      {
         "command": "devtoolbox.pruneBranches",
         "title": "Prune Merged Branches",
         "category": "DevToolbox",

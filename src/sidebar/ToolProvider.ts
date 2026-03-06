@@ -52,6 +52,12 @@ export class ToolProvider implements vscode.TreeDataProvider<ToolItem> {
           vscode.TreeItemCollapsibleState.None,
         ),
         new ToolItem(
+          "Sort Exports",
+          "devtoolbox.sortExports",
+          new vscode.ThemeIcon("list-ordered"),
+          vscode.TreeItemCollapsibleState.None,
+        ),
+        new ToolItem(
           "Prune Remote Branches",
           "devtoolbox.pruneRemoteBranches",
           new vscode.ThemeIcon("cloud"),

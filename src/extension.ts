@@ -8,6 +8,7 @@ import {
 } from "./commands/pruneBranches";
 import { clearNodeModules } from "./commands/clearNodeModules";
 import { killPort } from "./commands/killPort";
+import { sortExports } from "./commands/sortExports";
 import {
   showMemoryUsage,
   openProcessExplorer,
@@ -58,6 +59,11 @@ export function activate(context: vscode.ExtensionContext) {
     },
   );
 
+  const sortExportsDisposable = vscode.commands.registerCommand(
+    "devtoolbox.sortExports",
+    sortExports,
+  );
+
   const checkUpdatesDisposable = vscode.commands.registerCommand(
     "devtoolbox.checkForUpdates",
     async () => {
@@ -101,6 +107,7 @@ export function activate(context: vscode.ExtensionContext) {
     removeLogsDisposable,
     pruneBranchesDisposable,
     removeCommentsDisposable,
+    sortExportsDisposable,
     checkUpdatesDisposable,
     showMemoryDisposable,
     processExplorerDisposable,
