@@ -2,7 +2,7 @@
   "name": "and-dev-toolbox",
   "displayName": "DevToolbox - Developer Utilities",
   "description": "Essential developer utilities: remove logs, clean code, prune branches",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publisher": "andersseen",
   "engines": {
     "vscode": "^1.80.0"
