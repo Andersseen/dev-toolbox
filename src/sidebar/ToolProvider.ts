@@ -51,6 +51,12 @@ export class ToolProvider implements vscode.TreeDataProvider<ToolItem> {
           new vscode.ThemeIcon("comment"),
           vscode.TreeItemCollapsibleState.None,
         ),
+        new ToolItem(
+          "Prune Remote Branches",
+          "devtoolbox.pruneRemoteBranches",
+          new vscode.ThemeIcon("cloud"),
+          vscode.TreeItemCollapsibleState.None,
+        ),
       ]);
     }
 
@@ -72,6 +78,18 @@ export class ToolProvider implements vscode.TreeDataProvider<ToolItem> {
           "Restart Extension Host",
           "devtoolbox.restartExtensionHost",
           new vscode.ThemeIcon("refresh"),
+          vscode.TreeItemCollapsibleState.None,
+        ),
+        new ToolItem(
+          "Clear Node Modules",
+          "devtoolbox.clearNodeModules",
+          new vscode.ThemeIcon("trash"),
+          vscode.TreeItemCollapsibleState.None,
+        ),
+        new ToolItem(
+          "Kill Port Process",
+          "devtoolbox.killPort",
+          new vscode.ThemeIcon("plug"),
           vscode.TreeItemCollapsibleState.None,
         ),
       ]);

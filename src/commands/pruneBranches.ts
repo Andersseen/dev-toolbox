@@ -95,3 +95,34 @@ export async function pruneMergedBranches() {
     );
   }
 }
+
+export async function pruneRemoteBranches() {
+  const workspaceFolders = vscode.workspace.workspaceFolders;
+  if (!workspaceFolders) {
+    vscode.window.showErrorMessage("No workspace open.");
+    return;
+  }
+
+  const rootPath = workspaceFolders[0].uri.fsPath;
+
+  try {
+    const { stdout, stderr } = await exec("git fetch -p", { cwd: rootPath });
+
+    // git fetch -p outputs mostly to stderr in some versions, or stdout, let's combine to check.
+    const output = stdout + stderr;
+
+    if (output.includes("deleted") || output.includes("x [deleted]")) {
+      vscode.window.showInformationMessage(
+        "Pruned remote-tracking branches successfully.",
+      );
+    } else {
+      vscode.window.showInformationMessage(
+        "No remote-tracking branches needed pruning.",
+      );
+    }
+  } catch (error: any) {
+    vscode.window.showErrorMessage(
+      `Failed to prune remote branches: ${error.message}`,
+    );
+  }
+}

@@ -2,7 +2,12 @@ import * as vscode from "vscode";
 import { ToolProvider } from "./sidebar/ToolProvider";
 import { removeConsoleLogs } from "./commands/removeLogs";
 import { removeComments } from "./commands/removeComments";
-import { pruneMergedBranches } from "./commands/pruneBranches";
+import {
+  pruneMergedBranches,
+  pruneRemoteBranches,
+} from "./commands/pruneBranches";
+import { clearNodeModules } from "./commands/clearNodeModules";
+import { killPort } from "./commands/killPort";
 import {
   showMemoryUsage,
   openProcessExplorer,
@@ -76,6 +81,21 @@ export function activate(context: vscode.ExtensionContext) {
     restartExtensionHost,
   );
 
+  const pruneRemoteBranchesDisposable = vscode.commands.registerCommand(
+    "devtoolbox.pruneRemoteBranches",
+    pruneRemoteBranches,
+  );
+
+  const clearNodeModulesDisposable = vscode.commands.registerCommand(
+    "devtoolbox.clearNodeModules",
+    clearNodeModules,
+  );
+
+  const killPortDisposable = vscode.commands.registerCommand(
+    "devtoolbox.killPort",
+    killPort,
+  );
+
   context.subscriptions.push(
     treeDataProviderDisposable,
     removeLogsDisposable,
@@ -85,6 +105,9 @@ export function activate(context: vscode.ExtensionContext) {
     showMemoryDisposable,
     processExplorerDisposable,
     restartExtensionHostDisposable,
+    pruneRemoteBranchesDisposable,
+    clearNodeModulesDisposable,
+    killPortDisposable,
   );
 }
 
